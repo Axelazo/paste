@@ -66,17 +66,10 @@
 
 <script>
     $(document).ready(function() {
-
-        if (!tinymce.get('editor')) {
-            AddTinyMCE();
-        } else {
-            tinymce.remove('#editor')
-            AddTinyMCE();
-        }
-
         $('#save').click(function() {
+            $("#save").attr("disabled", "disabled");
             var p_title = $('#title').val();
-            var p_content = tinymce.get('editor').getContent()
+            var p_content = "Gay";
             if (p_title != "" && p_content != "") {
                 $.ajax({
                     url: "save.php",
@@ -87,12 +80,12 @@
                     },
                     async: true,
                     success: function(dataResult) {
+                        console.log(dataResult);
                         var dataResult = JSON.parse(dataResult);
+                        console.log(dataResult.viewId);
                         if (dataResult.statusCode == 200) {
-                            $("#paste-create").removeAttr("disabled");
+                            $("#save").removeAttr("disabled");
                             $('#paste-form').find('input:text').val('');
-                            content = "";
-                            tinymce.get('editor').setContent(content);
                             $("#success").show();
                             setTimeout(function() {
                                 $("#success").hide();
@@ -104,6 +97,7 @@
                 });
                 return false;
             } else {
+                $("#save").removeAttr("disabled");
                 $("#warning").show();
                 setTimeout(function() {
                     $("#warning").hide();
@@ -111,15 +105,10 @@
             }
         });
 
-    });
-
-    function AddTinyMCE() {
-        console.log("added tinymce");
-        tinymce.init({
-            selector: 'textarea#editor',
-            plugins: 'a11ychecker advcode casechange formatpainter linkchecker lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinydrive tinymcespellchecker link',
-            toolbar: 'a11ycheck casechange checklist code formatpainter insertfile pageembed permanentpen table link',
-            height: "400",
+        $("#editor").summernote({
+            height: 400,
+            focus: true
         });
-    }
+
+    });
 </script>

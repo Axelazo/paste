@@ -5,7 +5,7 @@
 <div class="row" style="margin:25px">
     <div class="col-lg-9">
         <div class="card dashboard-shadow">
-            <form class="search">
+        <form class="search">
                 <div class="row" style>
                     <div class="col-11">
                         <input type="text" class="form-control" placeholder="Buscar pastes...">
@@ -15,15 +15,6 @@
                     </div>
                 </div>
             </form>
-        </div>
-    </div>
-    <div class="col-lg-3">
-        <div class="alert alert-info fade show" role="alert">
-            La búsqueda funciona por medio de los <strong>NOMBRES!</strong> de los pastes no por su contenido!
-        </div>
-    </div>
-    <div class="col-lg-9">
-        <div class="card dashboard-shadow">
             <div class="table-responsive text-left">
                 <table class="table">
                     <thead>
@@ -54,7 +45,9 @@
                                             <th scope='row'>$row[id]</th>
                                             <td>$row[title]</td>
                                             <td>$row[views]</td>
-                                            <td class='text-center'><a href='view.php?id=$row[id]' target='_blank' class='btn btn-secondary mr-2'>Ver Paste</a><button type='button' class='btn btn-success mr-2' value='$row[id]'>Editar</button><button type='button' class='btn btn-danger'>Eliminar</button></td>
+                                            <td class='text-center'><a href='view.php?viewID=$row[viewID]' target='_blank' class='btn btn-secondary mr-2'>Ver Paste</a>
+                                            <a class='btn btn-warning mr-2'>Editar Paste</a>
+                                            <a class='btn btn-danger mr-2'>Eliminar</a></td>
                                             </tr>";
                                 }           
                             } else {
@@ -65,15 +58,11 @@
                     </tbody>
                 </table>
             </div>
-            <nav aria-label="Page navigation example float-right">
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
-                </ul>
-            </nav>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="alert alert-info fade show" role="alert">
+            La búsqueda funciona por medio de los <strong>NOMBRES!</strong> de los pastes no por su contenido!
         </div>
     </div>
 </div>

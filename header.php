@@ -8,11 +8,10 @@
     <meta name="author" content="Subidazas!">
     <meta name="description" content="Sección de enlaces">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css\bootstrap.min.css">
+    <link rel="stylesheet" href="css\style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://cdn.tiny.cloud/1/7oucgc5e4lwbnq7p2ebbp3f9eb9wgqmluaxxoc86wzxyey79/tinymce/5/tinymce.min.js" referrerpolicy="origin" />
-    </script>
+    <link href="css\summernote.min.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="" />
 </head>
 

@@ -3,6 +3,6 @@
 $dbhost = "localhost";
 $dbuser = "root";
 $dbpass = "";
-$dbname = "linksazos";
+$dbname = "paste";
 
 ?>

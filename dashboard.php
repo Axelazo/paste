@@ -29,7 +29,8 @@
         </div>
     </div>
 </main>
-<script type="text/javascript" src="js/jquery-3.4.1.js"></script>
-<script type="text/javascript" src="js/popper.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js\jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js\popper.min.js"></script>
+<script type="text/javascript" src="js\bootstrap.min.js"></script>
+<script type="text/javascript" src="js\summernote.min.js"></script>
 <script type="text/javascript" src="js/scripts.js"></script>

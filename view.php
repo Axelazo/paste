@@ -12,9 +12,9 @@
                                 die("Conexión fallida: ". mysqli_connect_error());
                             }
                 
-                            $id = $_GET['id'];
+                            $viewID = $_GET['viewID'];
                             
-                            $query = "SELECT * FROM pastes WHERE id = '$id'";
+                            $query = "SELECT * FROM pastes WHERE viewID = '$viewID'";
                             
                             $result = mysqli_query($conn, $query);
                             
@@ -24,7 +24,7 @@
                             $content = $row['content'];
                             $views = $row['views'];
                             $views++;
-                            $query = "UPDATE pastes SET views = views+1 WHERE pastes.id = '$id'";
+                            $query = "UPDATE pastes SET views = views+1 WHERE pastes.viewID = '$viewID'";
                             mysqli_query($conn, $query);
                 
                             mysqli_close($conn);
