@@ -5,16 +5,6 @@
 <div class="row" style="margin:25px">
     <div class="col-lg-9">
         <div class="card dashboard-shadow">
-        <form class="search">
-                <div class="row" style>
-                    <div class="col-11">
-                        <input type="text" class="form-control" placeholder="Buscar pastes...">
-                    </div>
-                    <div class="col-1">
-                        <button class="btn btn-larg btn-block btn-success">Buscar</button>
-                    </div>
-                </div>
-            </form>
             <div class="table-responsive text-left">
                 <table class="table">
                     <tbody>
@@ -25,8 +15,9 @@
                             if(!$conn) {
                                 die("Conexión fallida: ". mysqli_connect_error());
                             }
+                            $limit = 10;  
                         
-                            $query = "SELECT * FROM pastes ORDER BY id DESC";
+                            $query = "SELECT * FROM pastes WHERE reported = 1 ORDER BY id";
                             
                             $result = mysqli_query($conn, $query);
                             
@@ -46,13 +37,20 @@
                                 ";
                                 while($row = mysqli_fetch_assoc($result)) {
                                     echo "<tr>
+                                            <td>
+                                                <div class='alert alert-danger' role='alert'>
+                                                    <strong><i class='material-icons' style='font-size:18px'>info</i> Reportado</strong>
+                                                </div>
+                                            </td>
                                             <th scope='row'>$row[id]</th>
                                             <td>$row[title]</td>
                                             <td>$row[views]</td>
-                                            <td class='text-center'><a href='view.php?viewID=$row[viewID]' target='_blank' class='btn btn-secondary mr-2'><i class='material-icons' style='font-size:18px'>remove_red_eye</i> Ver Paste</a>
-                                            <a class='btn btn-warning mr-2'><i class='material-icons' style='font-size:18px'>edit</i> Editar Paste</a>
-                                            <a class='btn btn-danger mr-2 deletePaste'><i class='material-icons' style='font-size:18px'>delete</i> Eliminar</a></td>
-                                            </tr>";
+                                            <td class='text-center'>
+                                                <a href='view.php?viewID=$row[viewID]' target='_blank' class='btn btn-secondary mr-2'><i class='material-icons' style='font-size:18px'>remove_red_eye</i> Ver Paste</a>
+                                                <a class='btn btn-warning mr-2'><i class='material-icons' style='font-size:18px'>edit</i> Editar Paste</a>
+                                                <a class='btn btn-danger mr-2 deletePaste'><i class='material-icons' style='font-size:18px'>delete</i> Eliminar</a>
+                                            </td>
+                                        </tr>";
                                 }           
                             } else {
                                 echo "  <div class='alert alert-primary' role='alert'>

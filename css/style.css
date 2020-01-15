@@ -122,7 +122,6 @@ footer p {
 
 .dashboard-warn-color {
     color: #dd9533;
-    overflow: 
 }
 
 /* Search */ 
@@ -140,4 +139,12 @@ footer p {
 
 .view-body {
     min-height: 400px;
+}
+
+.alert {
+    margin-bottom:0;
+}
+
+.table {
+    margin-bottom:0;
 }

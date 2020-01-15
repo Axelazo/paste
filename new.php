@@ -14,14 +14,11 @@
             <div class="row">
                 <div class="col">
                     <label>CONTENIDO DEL PASTE</label>
-                    <textarea id="editor" name="paste-content"></textarea>
+                    <textarea id="editor" name="paste-content"><p>Contenido del paste aquí</p></textarea>
                 </div>
             </div>
             <div class="row">
                 <div id="status-message" class="col">
-                    <div id="success" class="alert alert-success fade show" role="alert" style="display: none;">
-                        <strong>¡EXCELENTE!</strong> El paste se ha creado con éxito!.
-                    </div>
                     <div id="warning" class="alert alert-warning fade show" role="alert" style="display: none;">
                         <strong>¡Rayos!</strong> Parece que te has olvidado del <strong>TÍTULO</strong> o <strong>CONTENIDO</strong>!.
                     </div>
@@ -50,12 +47,23 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="linkModalTitle"></h5>
+                <h5 class="modal-title" id="linkModalTitle">Paste credo</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div id="linkModalBody"class="modal-body">
+                <div id="success" class="alert alert-success fade show" role="alert">
+                    <strong>¡EXCELENTE!</strong> El paste se ha creado con éxito!.
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <input id="pasteLinkPh" class="form-control" type="text" placeholder="Readonly input here…" readonly>
+                    </div>
+                    <div class="col-12">
+                        <a id="pasteLink" class='btn btn-warning mr-2'><i class="material-icons">link</i> Copiar link</a>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -66,10 +74,13 @@
 
 <script>
     $(document).ready(function() {
+        var viewID;
+
         $('#save').click(function() {
             $("#save").attr("disabled", "disabled");
             var p_title = $('#title').val();
-            var p_content = "Gay";
+            var p_content = $('#editor').summernote('code');
+
             if (p_title != "" && p_content != "") {
                 $.ajax({
                     url: "save.php",
@@ -82,14 +93,14 @@
                     success: function(dataResult) {
                         console.log(dataResult);
                         var dataResult = JSON.parse(dataResult);
-                        console.log(dataResult.viewId);
+                        viewID = dataResult.viewId;
                         if (dataResult.statusCode == 200) {
                             $("#save").removeAttr("disabled");
                             $('#paste-form').find('input:text').val('');
-                            $("#success").show();
-                            setTimeout(function() {
-                                $("#success").hide();
-                            }, 5000);
+                            emptystr = "";
+                            $('#editor').summernote('code',emptystr);
+                            $('#pasteLinkPh').val(window.location.protocol + "//" + window.location.host + "/paste/view.php?viewID=" + viewID) // cambiar por base url al desplegar en internet
+                            $("#linkModal").modal();
                         } else if (dataResult.statusCode == 201) {
                             alert("Ha ocurrido un error conectándose a la base de datos!");
                         }
@@ -103,6 +114,13 @@
                     $("#warning").hide();
                 }, 5000);
             }
+        });
+
+        $("#pasteLink").click(function(){
+            $("#pasteLinkPh").focus(); 
+            $("#pasteLinkPh").select(); 
+            document.execCommand("copy");
+            console.log("copied!");
         });
 
         $("#editor").summernote({

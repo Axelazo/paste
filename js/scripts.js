@@ -21,3 +21,11 @@ $("#list").click(function () {
         $("#content").html(data); // display data
     });
 });
+
+$("#reported").click(function () {
+    $.ajax({
+        url: "reported.php"
+    }).done(function (data) { // data what is sent back by the php page
+        $("#content").html(data); // display data
+    });
+});

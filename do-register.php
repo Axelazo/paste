@@ -13,8 +13,8 @@ if(!$conn) {
     die("Connection failed: ". mysqli_connect_error());
 }
 //Variable con sentencia para consultar email a la base de datos
-$checkEmail = "SELECT * FROM usuarios WHERE email = '$_POST[email]' ";
-$checkUser = "SELECT * FROM usuarios WHERE user = '$_POST[user]' ";
+$checkEmail = "SELECT * FROM users WHERE email = '$_POST[email]' ";
+$checkUser = "SELECT * FROM users WHERE user = '$_POST[user]' ";
 //Variable $result contiene la consulta de la sentencia
 $emailResult = mysqli_query($conn, $checkEmail);
 $userResult = mysqli_query($conn, $checkUser);
@@ -42,7 +42,7 @@ else {
     
     $passHash = password_hash($password, PASSWORD_DEFAULT);
     
-    $query = "INSERT INTO usuarios (email, user, password, level, premium) VALUES ('$email', '$user', '$passHash', 3, 0)";
+    $query = "INSERT INTO users (email, user, password, level, premium) VALUES ('$email', '$user', '$passHash', 3, 0)";
     
     if(mysqli_query($conn, $query)) {
         echo "<div class='alert alert-success' role='alert'>

@@ -18,7 +18,7 @@ $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
         $password = $_POST['password'];
         
         //Preparamos la consulta
-        $query = "SELECT user, password, level, premium FROM usuarios WHERE user = '$user' ";
+        $query = "SELECT user, password, level, premium FROM users WHERE user = '$user' ";
         $result = mysqli_query($conn, $query);
         $row = mysqli_fetch_assoc($result);
         
