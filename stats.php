@@ -125,20 +125,34 @@
 </div>
 </div>
 </div>
+
 <div class="col-lg-6">
     <div class="card dashboard-shadow">
         <div class="card-header">PASTES MÁS VISITADOS</div>
         <canvas id="myChart"></canvas>
     </div>
-    <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
+    <script> 
+
+$(document).ready(function() {
+        var dataResult;
+
+        $.ajax({
+        url: 'popular.php',
+        type: 'POST',
+        success: function(dataResult) {
+            console.log(dataResult);
+            dataResult = JSON.parse(dataResult);
+            console.log(dataResult[0].views);
+            console.log(dataResult);
+            
+            var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'polarArea',
             data: {
-                labels: ['#1', '#2', '#3', '#4', '#5', '#6'],
+                labels: [dataResult[0].title, dataResult[1].title, dataResult[2].title, dataResult[3].title, dataResult[4].title, dataResult[5].title],
                 datasets: [{
                     label: '# de visitas',
-                    data: [200, 90, 30, 138, 256, 334],
+                    data: [dataResult[0].views, dataResult[1].views, dataResult[2].views, dataResult[3].views, dataResult[4].views, dataResult[5].views],
                     backgroundColor: [
                         'rgba(255, 99, 132)',
                         'rgba(54, 162, 235)',
@@ -168,6 +182,16 @@
                 }
             }
         });
+
+            }
+        });
+
+
+});
+
+        
+
+
     </script>
 </div>
 </div>
